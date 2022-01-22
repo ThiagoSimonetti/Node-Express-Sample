@@ -1,7 +1,7 @@
 const express = require("express");
-const campsiteRouter = express.Router();
+const promotionRouter = express.Router();
 
-campsiteRouter
+promotionRouter
   .route("/")
   .all((req, res, next) => {
     res.statusCode = 200;
@@ -9,43 +9,43 @@ campsiteRouter
     next();
   })
   .get((req, res) => {
-    res.end("Will send all the campsites to you");
+    res.end("Will send all the promotions to you");
   })
   .post((req, res) => {
     res.end(
-      `Will add the campsite: ${req.body.name} with description: ${req.body.description}`
+      `Will add the promotion: ${req.body.name} with description: ${req.body.description}`
     );
   })
   .put((req, res) => {
     res.statusCode = 403;
-    res.end("PUT operation not supported on /campsites");
+    res.end("PUT operation not supported on /promotions");
   })
   .delete((req, res) => {
-    res.end("Deleting all campsites");
+    res.end("Deleting all promotions");
   });
 
-campsiteRouter
-  .route("/:campsiteId")
+promotionRouter
+  .route("/:promotionId")
   .all((req, res, next) => {
     res.statusCode = 200;
     res.setHeader("Content-Type", "text/plain");
     next();
   })
   .get((req, res) => {
-    res.end(`Will send the campsite: ${req.params.campsiteId} to you`);
+    res.end(`Will send the promotion: ${req.params.promotionId} to you`);
   })
   .post((req, res) => {
     res.statusCode = 403;
     res.end(
-      `POST operation not supported on /campsites/${req.params.campsiteId}`
+      `POST operation not supported on /promotions/${req.params.promotionId}`
     );
   })
   .put((req, res) => {
-    res.write(`Updating campsite with Id: ${req.params.campsiteId}`);
+    res.write(`Updating promotion with Id: ${req.params.promotionId}`);
     res.end(` with description: ${req.body.description}`);
   })
   .delete((req, res) => {
-    res.end(`Deleting campsite Id: ${req.params.campsiteId}`);
+    res.end(`Deleting promotion Id: ${req.params.promotionId}`);
   });
 
-module.exports = campsiteRouter;
+module.exports = promotionRouter;
